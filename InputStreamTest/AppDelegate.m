@@ -18,14 +18,23 @@
 @end
 
 
-
+/*
+ 错误提示：虽然编译通过，也能运行，但是底下有错误提示“application windows are expected to have a root view controller”
+ 
+ 原因：在较新的xcod上都会出现这种错误。在iOS5之前的版本，应用加载时，需要一个root view controller，在iOS5以下的版本会有MainWindow作为启动文件，iOS5以后的版本没有了。需要手动创建一个root view controller
+ */
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-
+    //self.window.backgroundColor = [UIColor whiteColor];
+    
+    UIViewController *rootViewController = [[UIViewController alloc] init];
+    rootViewController.view.backgroundColor = [UIColor whiteColor];
+    [rootViewController.view setFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController  = rootViewController;
+    
     [self addViews];
 
     [self.window makeKeyAndVisible];
@@ -39,16 +48,16 @@
     self.button.frame = CGRectMake(0, 10, 320, 100);
     [self.button addTarget:self action:@selector(import:) forControlEvents:UIControlEventTouchUpInside];
     [self.button setTitle:@"Press Me" forState:UIControlStateNormal];
-    [self.window addSubview:self.button];
+    [self.window.rootViewController.view addSubview:self.button];
 
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 120, 320, 64)];
     slider.continuous = YES;
     [slider addTarget:self action:@selector(sliderMoved:) forControlEvents:UIControlEventValueChanged];
-    [self.window addSubview:slider];
+    [self.window.rootViewController.view addSubview:slider];
 
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, 320, 64)];
     self.label.textAlignment = NSTextAlignmentCenter;
-    [self.window addSubview:self.label];
+    [self.window.rootViewController.view addSubview:self.label];
 }
 
 - (void)sliderMoved:(UISlider *)sender;

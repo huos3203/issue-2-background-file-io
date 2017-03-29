@@ -35,6 +35,7 @@
     NSAssert(self.inputStream == nil, @"Cannot process multiple input streams in parallel");
     self.callback = block;
     self.completion = completion;
+    //I/O流
     self.inputStream = [NSInputStream inputStreamWithURL:self.fileURL];
     self.inputStream.delegate = self;
     
@@ -55,13 +56,14 @@
     return self;
 }
 
+#pragma mark - streamDelegate
 - (void)stream:(NSStream*)stream handleEvent:(NSStreamEvent)eventCode
 {
     switch (eventCode) {
         case NSStreamEventOpenCompleted: {
             break;
         }
-        case NSStreamEventEndEncountered: {
+        case NSStreamEventEndEncountered: {   //I/O流结束
             [self emitLineWithData:self.remainder];
             self.remainder = nil;
             [self.inputStream close];
@@ -75,7 +77,7 @@
             NSLog(@"error"); // TODO
             break;
         }
-        case NSStreamEventHasBytesAvailable: {
+        case NSStreamEventHasBytesAvailable: {  //TODO: 缓冲到内存一部分
             NSMutableData *buffer = [NSMutableData dataWithLength:4 * 1024];
             NSUInteger length = (NSUInteger) [self.inputStream read:[buffer mutableBytes] maxLength:[buffer length]];
             if (0 < length) {
@@ -93,6 +95,7 @@
     }
 }
 
+//通过"\n"切分，对内存数据处理
 - (void)processDataChunk:(NSMutableData *)buffer;
 {
     if (self.remainder != nil) {
@@ -100,6 +103,7 @@
     } else {
         self.remainder = buffer;
     }
+    //
     [self.remainder obj_enumerateComponentsSeparatedBy:self.delimiter usingBlock:^(NSData* component, BOOL last){
         if (!last) {
             [self emitLineWithData:component];
@@ -111,6 +115,7 @@
     }];
 }
 
+//获取到一行内容
 - (void)emitLineWithData:(NSData *)data;
 {
     NSUInteger lineNumber = self.lineNumber;
