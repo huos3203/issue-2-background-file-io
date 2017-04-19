@@ -23,7 +23,7 @@ CPU     ID                    FUNCTION:NAME
 
 ## 创建OC头文件 
 将脚本文件添加到xcode构建目标target中  
-1. 确保将类型设置为`DTrace source`。
+1. 确保将类型设置为`DTrace source`。   
 ![](InputStreamTest/指定文件类型.png)
 Xcode现在会在构建时自动创建一个对应的`syscall.h`头文件。
 xcode执行的相关命令：
