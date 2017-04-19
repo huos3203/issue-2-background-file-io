@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Reader.h"
-
+#import "provider.h"
 @interface AppDelegate ()
 
 @property (nonatomic, strong) Reader *reader;

@@ -19,6 +19,9 @@
 		5A416BED59517AAC8519A13F /* NSData+EnumerateComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A41609C5DF71B6DD82F75B8 /* NSData+EnumerateComponents.m */; };
 		5A416C2B8F58AB52E5EA37C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A416BF7D623ADCD8E2D158A /* Default@2x.png */; };
 		5A416F20A8C125953C68B9A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A416B10A520719894D782AA /* Foundation.framework */; };
+		D2CAAAC71EA7108200785B37 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = D2CAAAC61EA7108200785B37 /* README.md */; };
+		D2CAAACC1EA713F600785B37 /* syscall.d in Sources */ = {isa = PBXBuildFile; fileRef = D2CAAACB1EA713F600785B37 /* syscall.d */; };
+		D2CAAACD1EA7158100785B37 /* provider.d in Sources */ = {isa = PBXBuildFile; fileRef = D2CAAAC31EA70C0F00785B37 /* provider.d */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,10 @@
 		5A416C6962A61800C1B3602B /* InputStreamTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InputStreamTest-Prefix.pch"; sourceTree = "<group>"; };
 		5A416DF5C5FA18BD271CE3D8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5A416E4667591EFDE3BFB82B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2CAAAC31EA70C0F00785B37 /* provider.d */ = {isa = PBXFileReference; explicitFileType = sourcecode.dtrace; name = provider.d; path = dtrace/provider.d; sourceTree = "<group>"; };
+		D2CAAAC61EA7108200785B37 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D2CAAACA1EA710D600785B37 /* 指定文件类型.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "指定文件类型.png"; sourceTree = "<group>"; };
+		D2CAAACB1EA713F600785B37 /* syscall.d */ = {isa = PBXFileReference; explicitFileType = sourcecode.dtrace; fileEncoding = 4; name = syscall.d; path = dtrace/syscall.d; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +66,7 @@
 		5A416370D02D2F0A51B19503 = {
 			isa = PBXGroup;
 			children = (
+				D2CAAAC61EA7108200785B37 /* README.md */,
 				5A416E218CCA6EE2645000AB /* Products */,
 				5A416822B56054561F7D19A6 /* Frameworks */,
 				5A4166261079C21FE55CB01C /* InputStreamTest */,
@@ -68,6 +76,7 @@
 		5A4166261079C21FE55CB01C /* InputStreamTest */ = {
 			isa = PBXGroup;
 			children = (
+				D2CAAAC41EA70C1C00785B37 /* Dtrace */,
 				5A416EA35ED2A070A9514F26 /* Supporting Files */,
 				5A416DF5C5FA18BD271CE3D8 /* AppDelegate.h */,
 				5A4169B2290FA9CB7FBB9D9D /* AppDelegate.m */,
@@ -110,6 +119,16 @@
 				3E2D38B2176FC614005E42BD /* Clarissa Harlowe.txt */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2CAAAC41EA70C1C00785B37 /* Dtrace */ = {
+			isa = PBXGroup;
+			children = (
+				D2CAAACA1EA710D600785B37 /* 指定文件类型.png */,
+				D2CAAAC31EA70C0F00785B37 /* provider.d */,
+				D2CAAACB1EA713F600785B37 /* syscall.d */,
+			);
+			name = Dtrace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +198,10 @@
 			files = (
 				5A416450C64F4DCEB3DFF0C1 /* main.m in Sources */,
 				5A4163D9669871ED721FE344 /* AppDelegate.m in Sources */,
+				D2CAAACD1EA7158100785B37 /* provider.d in Sources */,
+				D2CAAAC71EA7108200785B37 /* README.md in Sources */,
 				5A4161CBC5DAEAD62AC9B7BD /* Reader.m in Sources */,
+				D2CAAACC1EA713F600785B37 /* syscall.d in Sources */,
 				5A416BED59517AAC8519A13F /* NSData+EnumerateComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
